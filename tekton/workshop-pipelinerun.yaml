@@ -14,9 +14,9 @@ spec:
     - name: pathToYamlFile
       value: "kubernetes/picalc.yaml"
     - name: imageUrl
-      value: <REGISTRY>/<NAMESPACE>/picalc
+      value: codefactoryhungary/picalc
     - name: imageTag
-      value: <NAME>-v1
+      value: v1.0.0
   serviceAccountName: pipeline-account
   workspaces:
     - name: git-source
