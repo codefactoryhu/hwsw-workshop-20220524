@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: hwsw-workshop-pr-
+  namespace: default
+spec:
+  pipelineRef:
+    name: build-and-deploy-pipeline
+  params:
+    - name: gitUrl
+      value: https://github.com/codefactoryhu/hwsw-workshop-20220524.git
+    - name: gitRevision
+      value: master
+    - name: pathToYamlFile
+      value: "kubernetes/picalc.yaml"
+    - name: imageUrl
+      value: <REGISTRY>/<NAMESPACE>/picalc
+    - name: imageTag
+      value: <NAME>-v1
+  serviceAccountName: pipeline-account
+  workspaces:
+    - name: git-source
+      persistentVolumeClaim:
+        claimName: picalc-source-pvc
