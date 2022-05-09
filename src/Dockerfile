@@ -6,7 +6,6 @@ RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go test
 RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -v -o picalc
 
 FROM alpine
-LABEL org.opencontainers.image.source https://github.com/codefactoryhu/picalc
 COPY --from=builder /hwsw/tekton-workshop/picalc /picalc
 
 ENV PORT 8080
