@@ -58,3 +58,4 @@ spec:
           value: $(params.pathToContext)
         - name: IMAGE
           value: $(params.imageUrl):$(params.imageTag)
+

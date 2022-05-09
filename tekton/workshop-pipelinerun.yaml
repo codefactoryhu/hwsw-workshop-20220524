@@ -14,7 +14,7 @@ spec:
     - name: pathToYamlFile
       value: "kubernetes/picalc.yaml"
     - name: imageUrl
-      value: codefactoryhungary/picalc
+      value: ghcr.io/codefactoryhu/picalc
     - name: imageTag
       value: v1.0.0
   serviceAccountName: pipeline-account
@@ -22,3 +22,6 @@ spec:
     - name: git-source
       persistentVolumeClaim:
         claimName: picalc-source-pvc
+    - name: dockerconfig
+      secret:
+        secretName: my-secret

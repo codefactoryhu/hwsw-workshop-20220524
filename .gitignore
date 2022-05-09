@@ -1,5 +1,6 @@
 # generated certs
 install/cert/*
+tekton/config.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm,intellij

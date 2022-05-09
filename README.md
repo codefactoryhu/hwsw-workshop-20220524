@@ -95,3 +95,40 @@ tkn hub install task git-clone
 ``` bash
 tkn hub install task kaniko
 ```
+
+``` bash
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hwsw-workshop-cr-push-secret
+  namespace: default
+  annotations:
+    tekton.dev/docker-0: https://ghcr.io
+type: kubernetes.io/basic-auth
+stringData:
+    username: USER
+    password: TOKEN
+EOF
+```
+
+# or
+
+``` bash
+kubectl create secret generic hwsw-workshop-cr-push-secret -n default --type="kubernetes.io/basic-auth" --from-literal=username=USER --from-literal=password=TOKEN
+
+kubectl annotate secret hwsw-workshop-cr-push-secret tekton.dev/docker-0=https://ghcr.io
+```
+
+### Add pipline
+
+``` bash
+kubectl apply -f tekton/workshop-pipeline-pvc.yaml
+kubectl apply -f tekton/workshop-serviceaccount.yaml
+kubectl apply -f tekton/workshop-pipeline.yaml
+```
+
+### Start pipline
+``` bash
+kubectl create -f tekton/workshop-pipelinerun.yaml
+```
