@@ -94,6 +94,8 @@ tkn hub install task git-clone
 ### kaniko https://hub.tekton.dev/tekton/task/kaniko 
 ``` bash
 tkn hub install task kaniko
+# or
+kubectl apply -f tekton/workshop-task-kaniko.yaml
 ```
 
 ``` bash
@@ -110,11 +112,11 @@ stringData:
     username: USER
     password: TOKEN
 EOF
-```
+
 
 # or
 
-``` bash
+
 kubectl create secret generic hwsw-workshop-cr-push-secret -n default --type="kubernetes.io/basic-auth" --from-literal=username=USER --from-literal=password=TOKEN
 
 kubectl annotate secret hwsw-workshop-cr-push-secret tekton.dev/docker-0=https://ghcr.io

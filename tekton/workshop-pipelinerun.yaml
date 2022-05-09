@@ -16,12 +16,10 @@ spec:
     - name: imageUrl
       value: ghcr.io/codefactoryhu/picalc
     - name: imageTag
-      value: v1.0.0
+      value: v1.0.2
   serviceAccountName: pipeline-account
   workspaces:
     - name: git-source
       persistentVolumeClaim:
         claimName: picalc-source-pvc
-    - name: dockerconfig
-      secret:
-        secretName: my-secret
+

@@ -43,6 +43,11 @@ spec:
     - name: IMAGE_URL
       description: URL of the image just built.
   steps:
+    - name: docker-test
+      image: $(params.BUILDER_IMAGE)-debug
+      script: |
+        #!/bin/sh
+        cat /root/.docker/config.json
     - name: build-and-push
       workingDir: $(workspaces.source.path)
       image: $(params.BUILDER_IMAGE)
@@ -52,6 +57,7 @@ spec:
         - --context=$(workspaces.source.path)/$(params.CONTEXT) # The user does not need to care the workspace and the source.
         - --destination=$(params.IMAGE)
         - --digest-file=$(results.IMAGE_DIGEST.path)
+        - --verbosity=info
       # kaniko assumes it is running as root, which means this example fails on platforms
       # that default to run containers as random uid (like OpenShift). Adding this securityContext
       # makes it explicit that it needs to run as root.
