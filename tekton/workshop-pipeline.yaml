@@ -19,9 +19,6 @@ spec:
       description: The path to the build context, used by Kaniko - within the workspace
       default: src
       type: string
-    - name: pathToYamlFile
-      description: The path to the yaml file to deploy within the git source
-      type: string
     - name: imageUrl
       description: Image name including repository
       type: string
@@ -45,11 +42,23 @@ spec:
           value: "."
         - name: deleteExisting
           value: "true"
+    - name: dockerfile-lint
+      taskRef:
+        name: hadolint
+      workspaces:
+      - name: source
+        workspace: git-source
+      runAfter:
+      - clone-repo
+      params:
+        - name: dockerfile-path
+          value: $(workspaces.source.path)/$(params.pathToContext)/Dockerfile
     - name: build-and-push-image
       taskRef:
         name: kaniko
       runAfter:
         - clone-repo
+        - dockerfile-lint
       workspaces:
         - name: source
           workspace: git-source

@@ -11,8 +11,6 @@ spec:
       value: https://github.com/codefactoryhu/hwsw-workshop-20220524.git
     - name: gitRevision
       value: master
-    - name: pathToYamlFile
-      value: "kubernetes/picalc.yaml"
     - name: imageUrl
       value: ghcr.io/codefactoryhu/picalc
     - name: imageTag
