@@ -55,7 +55,7 @@ spec:
           value: $(workspaces.source.path)/$(params.pathToContext)/Dockerfile
     - name: build-and-push-image
       taskRef:
-        name: kaniko
+        name: buildah
       runAfter:
         - clone-repo
         - dockerfile-lint
@@ -64,7 +64,7 @@ spec:
           workspace: git-source
       params:
         - name: CONTEXT
-          value: $(params.pathToContext)
+          value: $(workspaces.source.path)/$(params.pathToContext)
         - name: IMAGE
           value: $(params.imageUrl):$(params.imageTag)
 
