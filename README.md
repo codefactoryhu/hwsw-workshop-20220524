@@ -4,9 +4,10 @@
 kubectl apply -f https://storage.googleapis.com/tekton-releases/operator/latest/release.yaml
 ```
 
-# Install tekton-pielines by operator [install-tekton.yaml](./install/install-tekton.yaml)
+# Install tekton-pipelines by operator 
 
 ``` yaml
+cat <<EOF | kubectl create -f -
 apiVersion: operator.tekton.dev/v1alpha1
 kind: TektonConfig
 metadata:
@@ -18,14 +19,14 @@ spec:
     resources:
     - pipelinerun
     - taskrun
-    keep: 3
+    keep: 2
     schedule: "0 8 * * *"
+EOF
 ```
 
-# Installing Tekton Results
+# Installing Tekton Results (optional)
 
 ## Prerequisites
-
 
 1. Tekton Pipelines must be installed on the cluster.
 2. Generating a database root password.
@@ -82,20 +83,28 @@ spec:
 kubectl apply -f https://storage.googleapis.com/tekton-releases/results/previous/v0.4.0/release.yaml
 ```
 
-
 # Create Pipline
 
 ## Install tasks
 ### git-clone https://hub.tekton.dev/tekton/task/git-clone
 ``` bash
-tkn hub install task git-clone
+tkn hub install task git-clone -n default
 ```
 
 ### buildah https://hub.tekton.dev/tekton/task/buildah
 ``` bash
-tkn hub install task buildah
+tkn hub install task buildah -n default
 ```
 
+### Create hadolint task https://hub.tekton.dev/tekton/task/hadolint (created arm64 hadolint)
+``` bash
+kubectl apply -f tekton/workshop-task-hadolint.yaml
+```
+
+### Generate new github token 
+https://github.com/settings/tokens/new
+
+### Add secret with generated token
 ``` bash
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -108,7 +117,7 @@ metadata:
 type: kubernetes.io/basic-auth
 stringData:
     username: USER
-    password: TOKEN
+    password: TOKEN 
 EOF
 
 
@@ -128,7 +137,19 @@ kubectl apply -f tekton/workshop-serviceaccount.yaml
 kubectl apply -f tekton/workshop-pipeline.yaml
 ```
 
+### Add eventlistener
+``` bash
+kubectl apply -f tekton/workshop-el.yaml
+kubectl apply -f tekton/workshop-el-tt.yaml
+kubectl apply -f tekton/workshop-el-tb.yaml
+```
+
 ### Start pipline
 ``` bash
 kubectl create -f tekton/workshop-pipelinerun.yaml
+```
+
+### EL curl request
+``` bash
+curl -X POST -d '{"imageTag":"v.1.0.6"}' localhost:8080
 ```
