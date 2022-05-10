@@ -1,0 +1,14 @@
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: workshop-el
+  namespace: default
+spec:
+  serviceAccountName: pipeline-account
+  triggers:
+    - name: workshop-trigger
+      bindings:
+        - ref: workshop-pipeline-binding
+      template:
+        ref: workshop-pipeline-template

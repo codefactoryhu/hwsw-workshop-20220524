@@ -91,11 +91,9 @@ kubectl apply -f https://storage.googleapis.com/tekton-releases/results/previous
 tkn hub install task git-clone
 ```
 
-### kaniko https://hub.tekton.dev/tekton/task/kaniko 
+### buildah https://hub.tekton.dev/tekton/task/buildah
 ``` bash
-tkn hub install task kaniko
-# or
-kubectl apply -f tekton/workshop-task-kaniko.yaml
+tkn hub install task buildah
 ```
 
 ``` bash

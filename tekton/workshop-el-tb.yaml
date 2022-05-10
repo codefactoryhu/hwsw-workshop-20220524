@@ -1,0 +1,9 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: workshop-pipeline-binding
+  namespace: default
+spec:
+  params:
+  - name: imageTag
+    value: $(body.imageTag)

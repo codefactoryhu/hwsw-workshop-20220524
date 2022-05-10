@@ -10,6 +10,7 @@ spec:
   params:
     - name: gitUrl
       description: Git repository url
+      default: https://github.com/codefactoryhu/hwsw-workshop-20220524.git
       type: string
     - name: gitRevision
       description: Git revision to check out
@@ -21,6 +22,7 @@ spec:
       type: string
     - name: imageUrl
       description: Image name including repository
+      default: ghcr.io/codefactoryhu/picalc
       type: string
     - name: imageTag
       description: Image tag

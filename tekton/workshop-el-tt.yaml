@@ -1,0 +1,26 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: workshop-pipeline-template
+  namespace: default
+spec:
+  params:
+  - name: imageTag
+    description: imageTag
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: hwsw-workshop-pr-
+      namespace: default
+    spec:
+      pipelineRef:
+        name: build-and-deploy-pipeline
+      params:
+        - name: imageTag
+          value: $(tt.params.imageTag)
+      serviceAccountName: pipeline-account
+      workspaces:
+        - name: git-source
+          persistentVolumeClaim:
+            claimName: picalc-source-pvc
