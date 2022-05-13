@@ -139,9 +139,9 @@ kubectl apply -f tekton/workshop-pipeline.yaml
 
 ### Add eventlistener
 ``` bash
-kubectl apply -f tekton/workshop-el.yaml
-kubectl apply -f tekton/workshop-el-tt.yaml
-kubectl apply -f tekton/workshop-el-tb.yaml
+kubectl apply -f tekton/eventlistener/workshop-el.yaml
+kubectl apply -f tekton/eventlistener/workshop-el-tt.yaml
+kubectl apply -f tekton/eventlistener/workshop-el-tb.yaml
 ```
 
 ### Start pipline
