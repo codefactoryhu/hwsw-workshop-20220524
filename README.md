@@ -24,7 +24,8 @@ spec:
 EOF
 ```
 
-# Installing Tekton Results (optional)
+# Installing Tekton Results (optional) https://tekton.dev/docs/results/
+![Alt text](./static/result.png "Result API")
 
 ## Prerequisites
 
