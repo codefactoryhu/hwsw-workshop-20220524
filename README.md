@@ -117,8 +117,8 @@ metadata:
     tekton.dev/docker-0: https://ghcr.io
 type: kubernetes.io/basic-auth
 stringData:
-    username: USER
-    password: TOKEN 
+    username: ptzool # github user name
+    password: ${TOKEN} 
 EOF
 
 
@@ -133,20 +133,39 @@ kubectl annotate secret hwsw-workshop-cr-push-secret tekton.dev/docker-0=https:/
 ### Add pipline
 
 ``` bash
+cat tekton/workshop-pipeline-pvc.yaml | yq
 kubectl apply -f tekton/workshop-pipeline-pvc.yaml
+```
+
+``` bash
+cat tekton/workshop-serviceaccount.yaml | yq
 kubectl apply -f tekton/workshop-serviceaccount.yaml
+```
+
+``` bash
+cat tekton/workshop-pipeline.yaml | yq
 kubectl apply -f tekton/workshop-pipeline.yaml
 ```
 
 ### Add eventlistener
 ``` bash
+cat tekton/eventlistener/workshop-el.yaml | yq
 kubectl apply -f tekton/eventlistener/workshop-el.yaml
+```
+
+``` bash
+cat tekton/eventlistener/workshop-el-tt.yaml | yq
 kubectl apply -f tekton/eventlistener/workshop-el-tt.yaml
+```
+
+``` bash
+cat tekton/eventlistener/workshop-el-tb.yaml | yq
 kubectl apply -f tekton/eventlistener/workshop-el-tb.yaml
 ```
 
 ### Start pipline
 ``` bash
+cat cat tekton/workshop-pipelinerun.yaml | yq
 kubectl create -f tekton/workshop-pipelinerun.yaml
 ```
 
