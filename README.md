@@ -176,5 +176,5 @@ kubectl create -f tekton/workshop-pipelinerun.yaml
 
 ### EL curl request
 ``` bash
-curl -X POST -d '{"imageTag":"v.1.0.6"}' localhost:8080 | jq
+curl -X POST -d '{"imageTag":"v1.0.6"}' localhost:8080 | jq
 ```
