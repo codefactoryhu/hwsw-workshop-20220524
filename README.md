@@ -184,12 +184,23 @@ kubectl -n tekton-pipelines port-forward svc/tekton-dashboard 9097
 
 # event listener port forward
 kubectl -n default port-forward svc/el-workshop-el 8080
-``` 
+
+```
+
+or
+
+``` bash
+sudo -E kubefwd svc -n tekton-pipelines -n default
+```
+
+### Forwarded urls
+* http://tekton-dashboard:9097
+* http://hwsw-workshop.default:8080/?iterations=20000000
+* http://el-workshop-el.default:8080
 
 
 ### EL curl request
 ``` bash
-curl -X POST -d '{"imageTag":"v1.0.6"}' localhost:8080 | jq
+curl -X POST -d '{"imageTag":"v1.0.6"}' http://el-workshop-el.default:8080 | jq
 ```
-
 
