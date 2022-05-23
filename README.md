@@ -174,7 +174,22 @@ cat cat tekton/workshop-pipelinerun.yaml | yq
 kubectl create -f tekton/workshop-pipelinerun.yaml
 ```
 
+### Port forwards
+``` bash
+# workshop deployment port forward
+kubectl -n default port-forward svc/hwsw-workshop 8081:8080
+
+# tekton dashboard port forward
+kubectl -n tekton-pipelines port-forward svc/tekton-dashboard 9097
+
+# event listener port forward
+kubectl -n default port-forward svc/el-workshop-el 8080
+``` 
+
+
 ### EL curl request
 ``` bash
 curl -X POST -d '{"imageTag":"v1.0.6"}' localhost:8080 | jq
 ```
+
+
