@@ -221,3 +221,6 @@ sudo -E kubefwd svc -n tekton-pipelines -n default
 curl -X POST -d '{"imageTag":"v1.0.6"}' http://el-workshop-el.default:8080 | jq
 ```
 
+### Contact
+* https://twitter.com/ptzool
+* https://www.linkedin.com/in/zvigh/
