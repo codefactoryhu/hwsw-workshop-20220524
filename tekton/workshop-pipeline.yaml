@@ -59,6 +59,7 @@ spec:
     - name: dockerfile-lint
       taskRef:
         name: hadolint
+#        kind: ClusterTask
       workspaces:
       - name: source
         workspace: git-source
