@@ -24,6 +24,9 @@ spec:
 EOF
 ```
 
+<details><summary>Installing Tekton Results (optional) https://tekton.dev/docs/results/</summary>
+<p>
+
 # Installing Tekton Results (optional) https://tekton.dev/docs/results/
 ![Alt text](./static/result.png "Result API")
 
@@ -83,10 +86,23 @@ EOF
 ```sh
 kubectl apply -f https://storage.googleapis.com/tekton-releases/results/previous/v0.4.0/release.yaml
 ```
+</p>
+</details>
 
+---
 # Create Pipline
 
 ![Alt text](./static/pipeline.png "Pipeline")
+
+```mermaid
+graph TD;
+    clone[Git Clone]-->dockerlint[Dockerfile lint];
+    clone[Git Clone]-->build[Build and Push];
+    dockerlint[Dockerfile lint]-->build[Build and Push];
+    clone[Git Clone]-->helm[Helm install];
+    dockerlint[Dockerfile lint]-->helm[Helm install];
+    build[Build and Push]-->helm[Helm install];
+```
 
 
 ## Install tasks
