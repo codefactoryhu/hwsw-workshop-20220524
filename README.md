@@ -125,14 +125,12 @@ metadata:
     tekton.dev/docker-0: https://ghcr.io
 type: kubernetes.io/basic-auth
 stringData:
-    username: ptzool # github user name
+    username: ptzool
     password: ${TOKEN} 
 EOF
-
-
-# or
-
-
+```
+or
+```
 kubectl create secret generic hwsw-workshop-cr-push-secret -n default --type="kubernetes.io/basic-auth" --from-literal=username=USER --from-literal=password=TOKEN
 
 kubectl annotate secret hwsw-workshop-cr-push-secret tekton.dev/docker-0=https://ghcr.io
