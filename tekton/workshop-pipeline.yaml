@@ -28,6 +28,18 @@ spec:
       description: Image tag
       type: string
       default: "latest"
+    - name: charts_dir
+      description: HELM chart directory
+      type: string
+      default: ./helm/hwsw-workshop
+    - name: release_name
+      description: HELM release name
+      type: string
+      default: hwsw-workshop
+    - name: release_namespace
+      description: HELM release namespace
+      type: string
+      default: default
   tasks:
     - name: clone-repo
       taskRef:
@@ -69,4 +81,25 @@ spec:
           value: $(workspaces.source.path)/$(params.pathToContext)
         - name: IMAGE
           value: $(params.imageUrl):$(params.imageTag)
+    - name: helm-upgrade-from-source
+      taskRef:
+        name: helm-upgrade-from-source
+      runAfter:
+        - clone-repo
+        - dockerfile-lint
+        - build-and-push-image
+      workspaces:
+        - name: source
+          workspace: git-source
+      params:
+        - name: charts_dir
+          value: $(params.charts_dir)
+        - name: releases_version
+          value: $(params.imageTag)
+        - name: release_name
+          value: $(params.release_name)
+        - name: release_namespace
+          value: $(params.release_namespace)
+        - name: overwrite_values
+          value: "image.tag=$(params.imageTag)"
 

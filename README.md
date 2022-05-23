@@ -97,6 +97,11 @@ tkn hub install task git-clone -n default
 tkn hub install task buildah -n default
 ```
 
+### helm-upgrade-from-source https://hub.tekton.dev/tekton/task/helm-upgrade-from-source
+``` bash
+tkn hub install task helm-upgrade-from-source -n default
+```
+
 ### Create hadolint task https://hub.tekton.dev/tekton/task/hadolint (created arm64 hadolint)
 ``` bash
 kubectl apply -f tekton/workshop-task-hadolint.yaml
