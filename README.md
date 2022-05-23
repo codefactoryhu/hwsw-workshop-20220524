@@ -194,7 +194,7 @@ sudo -E kubefwd svc -n tekton-pipelines -n default
 ```
 
 ### Forwarded urls
-* http://tekton-dashboard:9097
+* http://tekton-dashboard.tekton-pipelines:9097
 * http://hwsw-workshop.default:8080/?iterations=20000000
 * http://el-workshop-el.default:8080
 
