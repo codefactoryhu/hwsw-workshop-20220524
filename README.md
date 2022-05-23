@@ -86,6 +86,9 @@ kubectl apply -f https://storage.googleapis.com/tekton-releases/results/previous
 
 # Create Pipline
 
+![Alt text](./static/pipeline.png "Pipeline")
+
+
 ## Install tasks
 ### git-clone https://hub.tekton.dev/tekton/task/git-clone
 ``` bash
