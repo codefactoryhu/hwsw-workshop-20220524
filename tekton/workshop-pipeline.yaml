@@ -94,7 +94,7 @@ spec:
       params:
         - name: charts_dir
           value: $(params.charts_dir)
-        - name: releases_version
+        - name: release_version
           value: $(params.imageTag)
         - name: release_name
           value: $(params.release_name)
