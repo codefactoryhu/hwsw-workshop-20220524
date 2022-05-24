@@ -108,6 +108,9 @@ graph TD;
 
 
 ## Install tasks
+### TKN cli install https://github.com/tektoncd/cli
+---
+
 ### git-clone https://hub.tekton.dev/tekton/task/git-clone
 ``` bash
 tkn hub install task git-clone -n default
