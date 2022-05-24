@@ -3,11 +3,8 @@ WORKDIR /hwsw/tekton-workshop/
 
 COPY picalc.go picalc_test.go ./
 
-# RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go test && \
-#    GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -v -o picalc
-
-RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go test 
-RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -v -o picalc
+RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go test && \
+    GO111MODULE=auto CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -v -o picalc
 
 FROM alpine:3.15
 COPY --from=builder /hwsw/tekton-workshop/picalc /picalc
