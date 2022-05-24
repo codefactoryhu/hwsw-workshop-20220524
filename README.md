@@ -1,3 +1,5 @@
+[![HWSW-TEKTON](http://img.youtube.com/vi/ON6KbMzsSYI/0.jpg)](https://www.youtube.com/watch?v=ON6KbMzsSYI "Tekton")
+
 # Install Tekton Operator
 ![Alt text](./static/this-is-the-way.webp "This is the way")
 ``` bash
